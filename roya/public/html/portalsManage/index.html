@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="YES">
+  <meta name="expect-continue" content="no">
+  <meta content="telephone=no" name="format-detection">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+
+  <link rel="stylesheet" href="../../stylesheets/layui.css?version=0.1.9">
+  <link rel="stylesheet" href="../../stylesheets/jquery-ui.min.css?version=0.1.9">
+  <link rel="stylesheet" href="../../stylesheets/public.css?version=0.1.9">
+  <link rel="stylesheet" href="../../stylesheets/bootstrap.min.css?version=0.1.9">
+  <link rel="stylesheet" href="../../stylesheets/portalsManage/portalsManage.css?version=0.1.9">
+  <title>校园门户管理</title>
+
+</head>
+<body>
+  <div class="container-page">
+    <div class=" sideR">
+      <div role="form" id="form1">
+        <div class="row">
+          <span class="lable_style3">应用名称</span>
+          <input id="appName" type="text" class="form-control input_style1" aria-describedby="basic-addon1" maxlength="50" />
+          <span class="lable_style3">应用标签</span>
+          <select id="appLabel" class="form-control meet-city input_style1">
+
+          </select>
+          <span class="lable_style3">应用提供商</span>
+          <input id="appSupplier" type="text" class="form-control input_style1" aria-describedby="basic-addon1"
+            maxlength="50" />
+        </div>
+        <div class="row">
+          <span class="lable_style3">适用学段</span>
+          <select id="syxd" class="form-control meet-city input_style1">
+
+          </select>
+          <span class="lable_style3">适用学科</span>
+          <select id="syxk" class="form-control meet-city input_style1">
+
+          </select>
+          <button class="btn btn-info btn-sm top-btn4" id="query">
+            查 询
+          </button>
+          <button class="btn btn-info btn-sm top-btn4" id="reset">
+            重 置
+          </button>
+        </div>
+        <div>
+          <button class="btn btn-info btn-sm top-btn10" id="addBtn">＋ 新建</button>
+        </div>
+      </div>
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr class="tt">
+            <th style="width:60px;">序号</th>
+            <th style="width:250px;">应用名称</th>
+            <th style="width:300px;">应用卖点</th>
+            <th style="width:150px;">应用标签</th>
+            <th style="width:300px">应用提供商</th>
+            <th style="width:150px">适用学段</th>
+            <th style="width:150px">操作</th>
+          </tr>
+        </thead>
+        <tbody id="check_tb">
+        </tbody>
+      </table>
+      <div id="pages" class="elem-center" align="center"></div>
+    </div>
+  </div>
+  <!--新增/修改框-->
+  <div class="modal fade" id="addpeople" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog1">
+      <div class="modal-content dialog_styleR juzhongR">
+        <div class="modal-body" style="height:80%;margin-top: 15px;">
+          <div class="modal-top">
+            <div class="modal_close">×</div>
+          </div>
+          <div class="row">
+            <span class="lable_style13"><span style="color:red">* </span>应用名称:</span>
+            <input id="app_name" type="text" class="form-control input_style4" aria-describedby="basic-addon1"
+              placeholder="请输入应用名称" maxlength="50" />
+          </div>
+          <div class="row">
+            <span class="lable_style13">应用logo:</span>
+            <img src="../../images/add1.png" class="addImg" data='' url=''>
+            <img src="../../images/dh_cancle.png" class="closeImg">
+          </div>
+          <div class="row">
+            <span class="lable_style13"><span style="color:red">* </span>应用卖点:</span>
+            <textarea class="textarea app_md" placeholder="请输入应用卖点" maxlength="500"></textarea>
+          </div>
+          <div class="row">
+            <span class="lable_style13"><span style="color:red">* </span>应用标签:</span>
+            <select id="app_label" type="text" class="form-control input_style4" style="padding-left: 2px;"
+              aria-describedby="basic-addon1" />
+
+            </select>
+          </div>
+          <div class="row">
+            <span class="lable_style13">应用提供商:</span>
+            <input id="app_supplier" type="text" class="form-control input_style4" placeholder="请输入应用提供商" maxlength="50" />
+          </div>
+          <div class="row">
+            <span class="lable_style13" style="float: left;"><span style="color:red">* </span>应用评分:</span>
+            <input type="radio" name="score" class="radio_" value="5">
+            <div class="score_">5星</div>
+            <input type="radio" name="score" class="radio_" value="4">
+            <div class="score_">4星</div>
+            <input type="radio" name="score" class="radio_" value="3">
+            <div class="score_">3星</div>
+            <input type="radio" name="score" class="radio_" value="2">
+            <div class="score_">2星</div>
+            <input type="radio" name="score" class="radio_" value="1">
+            <div class="score_">1星</div>
+          </div>
+          <div class="row">
+            <span class="lable_style13"><span style="color:red">* </span>适用学段:</span>
+            <select id="syxd_" type="text" class="form-control input_style4" style="padding-left: 2px;"
+              aria-describedby="basic-addon1" />
+
+            </select>
+          </div>
+          <div class="row">
+            <span class="lable_style13"><span style="color:red">* </span>适用学科:</span>
+            <select id="syxk_" type="text" class="form-control input_style4" style="padding-left: 2px;"
+              aria-describedby="basic-addon1" />
+
+            </select>
+          </div>
+          <div class="row">
+            <span class="lable_style13">应用简介:</span>
+            <textarea class="textarea app_jj" placeholder="请输入应用简介" maxlength="2000"></textarea>
+          </div>
+          <div class="row">
+            <span class="lable_style13" style="float:left">应用截图:</span>
+            <div class="imgdiv">
+              <input type="text" class="imgupload fujian-span" placeholder="请选择图片" style="width: 95%;" readonly="readonly">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer footer">
+          <button id="addconfirm" type="button" class="btn btn-info" btnid=''>提 交</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal">返 回</button>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+  <div class="modal fade in" id="upload_img" role="dialog" aria-labelledby="myModalLabe1" aria-hidden="false">
+    <div class="modal-dialog">
+      <div class="modal-content div-upimg">
+        <div class="modal-header" style="padding-top:5px; padding-bottom:5px;">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            ×
+          </button>
+          <h4 class="modal-title" style="font-size:14px;">图片上传</h4>
+        </div>
+        <div class="modal-body" style="height:90%;padding-top:5px !important">
+          <div id="targetform" class="container" style="padding-top:10px !important" data="
+                    <iframe id=&quot;iframe1&quot; name=&quot;form22&quot; src=&quot;&quot; style=&quot;width:100%; height:100%; display:none&quot;></iframe>
+                    <div id=&quot;targetform-uploadinput&quot;>
+                        <form id=&quot;form2&quot; action=&quot;/controller/uploadfm/2105&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;>
+                            <div class=&quot;container_left&quot;>
+
+                                <input class=&quot;imgfile&quot; name=&quot;imgFile&quot; type=&quot;file&quot;>
+
+                            </div>
+                        </form>
+                    </div>
+                    <button id=&quot;upload_iframe&quot; type=&quot;button&quot; class=&quot;btn btn-primary&quot;>上传</button>
+                "
+            imgtitle="C:\fakepath\book.jpg">
+            <iframe id="iframe1" name="form22" src="" style="width:100%; height:100%; display:none"></iframe>
+            <div id="targetform-uploadinput">
+              <form id="form2" action="/controller/uploadfm/2105" method="post" enctype="multipart/form-data">
+                <div class="container_left">
+
+                  <input class="imgfile" name="imgFile" type="file">
+
+                </div>
+              </form>
+            </div>
+            <button id="upload_iframe" type="button" class="btn btn-primary">上传</button>
+          </div>
+          <div class="modal-footer footer" style="display:none">
+
+            <img id="upimg-caijian" style="width:100%">
+            <input type="hidden" id="id-x" name="id-x">
+            <input type="hidden" id="id-y" name="id-y">
+            <input type="hidden" id="id-w" name="id-w">
+            <input type="hidden" id="id-h" name="id-h">
+            <button id="caijian" type="button" style="margin-top:15px" class="btn btn-primary">裁 剪</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+</body>
+
+<!--列表-->
+<script id="check_list_template" type="text/x-handlebars-template">
+  {{# data}}
+  <tr class="list_tr" trid={{id}}>
+    <td style="vertical-align: middle;">{{sort}}</td>
+    <td style="vertical-align: middle;">{{name}}</td>
+    <td style="vertical-align: middle;">{{sellPoint}}</td>
+    <td style="vertical-align: middle;">{{label}}</td>
+    <td style="vertical-align: middle;">{{supplier}}</td>
+    <td style="vertical-align: middle;">{{fitSection}}</td>
+    <td style="vertical-align: middle;">
+      <button class="btn btn-info edit_" style="padding: 2px 6px;font-size: 12px;" plate={{plate}} date={{fordate}}>修 改</button>
+      <button class="btn btn-info delete_" style="padding: 2px 6px;font-size: 12px;margin-left: 7px;">删 除</button>
+    </td>
+  </tr>
+  {{/ data}}
+</script>
+<script id="filelist" type="text/x-handlebars-template">
+  {{# data}}
+    <div style="position: relative;padding-top: 6px;">
+      <img class='fixImg' url='{{url}}' src='{{src}}' name="{{fileName}}">
+      <img src='../../images/dh_cancle.png' class="removeImg">
+    </div>
+  {{/data}}
+</script>
+<!--考勤列表-->
+<script id="label_list" type="text/x-handlebars-template">
+  <option value="0">请选择</option>
+  {{# data}}
+      <option value="{{value}}">{{text}}</option>
+  {{/ data}}
+</script>
+
+<script type="text/javascript" src="../../javascripts/sea.js"></script>
+<script type="text/javascript" src="../../javascripts/layui.all.js" charset='utf-8'></script>
+<script type="text/javascript">
+  seajs.use("../../javascripts/portalsManage/portalsManage-action")
+</script>
+
+
+</html>
